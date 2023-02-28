@@ -8,7 +8,7 @@ import mysql.connector as mysql
 # Connectivity to the database
 connection = mysql.connect(host="localhost",
                      user="root",
-                     passwd="modimac123+",
+                     passwd="",
                      db="inventory")
 
 barcode_text = ""
