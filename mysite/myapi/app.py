@@ -7,7 +7,7 @@ from pyzbar import pyzbar
 
 connection = mysql.connect(host="localhost",
                      user="root",
-                     passwd="modimac123+",
+                     passwd="",
                      db="inventory")
 barcode_text = ""
 def read_barcodes(frame):
