@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Barcode Scan</title>
+  </head>
+  <body>
+    <h1>Scan Barcode</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="scan-button">Scan</button>
+    <script>
+      const video = document.querySelector('#video')
+      const scanButton = document.querySelector('#scan-button')
+
+      // Get the user's camera stream and render it in the video element
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream
+        })
+        .catch(error => {
+          console.error(error)
+        })
+
+      // Listen for clicks on the scan button and send a POST request to the server
+      scanButton.addEventListener('click', event => {
+        fetch('/scan-and-insert/')
+          .then(response => {
+            if (response.ok) {
+              alert('Product added to pantry')
+            } else {
+              alert('Error adding product to pantry')
+            }
+          })
+          .catch(error => {
+            console.error(error)
+            alert('Error adding product to pantry')
+          })
+      })
+    </script>
+  </body>
+</html>
