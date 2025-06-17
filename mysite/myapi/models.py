@@ -6,5 +6,8 @@ class Inventory(models.Model):
     item_barcode = models.CharField(max_length=120)
     item_name = models.CharField(max_length=120)
 
+    class Meta:
+        db_table = 'pantry'
+
     def __str__(self):
         return self.item_name

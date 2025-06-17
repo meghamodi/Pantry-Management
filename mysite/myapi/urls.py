@@ -1,9 +1,9 @@
 
 from django.urls import path
-from .views import scan_and_insert,barcode_scan
-
+from . import views
 
 urlpatterns = [
-    path('scan-and-insert/', scan_and_insert, name='scan_and_insert'),
-    path('barcode_scan/', barcode_scan, name='barcode_scan'),
+    path('', views.scan_and_insert_view, name='default_scan'), 
+    path('scan/', views.scan_and_insert_view, name='scan_and_insert'),
+    # path('', views.barcode_scan, name='barcode_scan'),
 ]

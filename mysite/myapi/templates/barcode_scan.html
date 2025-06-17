@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Barcode Scan</title>
@@ -7,9 +7,12 @@
     <h1>Scan Barcode</h1>
     <video id="video" width="640" height="480" autoplay></video>
     <button id="scan-button">Scan</button>
+    <div id="status"></div>
     <script>
       const video = document.querySelector('#video')
       const scanButton = document.querySelector('#scan-button')
+      const statusDiv = document.querySelector('#status');
+
 
       // Get the user's camera stream and render it in the video element
       navigator.mediaDevices
@@ -21,21 +24,31 @@
           console.error(error)
         })
 
+      scanButton.addEventListener('click', () => {
+      scanButton.disabled = true;
+      statusDiv.textContent = "🔍 Scanning...";
+
       // Listen for clicks on the scan button and send a POST request to the server
-      scanButton.addEventListener('click', event => {
-        fetch('/scan-and-insert/')
+      
+        fetch('/myapi/scan-and-insert/',{
+          method:'GET',
+         
+
+        })
           .then(response => {
+            scanButton.disabled = false;
             if (response.ok) {
-              alert('Product added to pantry')
+              statusDiv.textContent = "✅ Product added to pantry!";
             } else {
-              alert('Error adding product to pantry')
+              statusDiv.textContent = "❌ Error adding product to pantry.";
             }
           })
           .catch(error => {
             console.error(error)
-            alert('Error adding product to pantry')
+            scanButton.disabled = false;
+            statusDiv.textContent = "❌ Network error.";
           })
       })
     </script>
   </body>
-</html>
+</html> -->
